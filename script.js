@@ -1,74 +1,74 @@
 let score = 0;
 let target = 14;
-let gameEnded = false;
+let rain;
 
-function start(){
-
+function start() {
     document.getElementById("welcome").hidden = true;
     document.getElementById("game").hidden = false;
 
-    spawnHearts();
-
+    rain = setInterval(createHeart, 200);
 }
 
-function spawnHearts(){
+function createHeart() {
 
-    const container = document.getElementById("hearts");
+    const hearts = document.getElementById("hearts");
 
-    setInterval(()=>{
+    let heart = document.createElement("div");
 
-        if(gameEnded) return;
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
 
-        let heart = document.createElement("div");
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.top = "-50px";
 
-        heart.innerHTML="💗";
-        heart.className="heart";
+    hearts.appendChild(heart);
 
-        heart.style.left=Math.random()*95+"vw";
+    let y = -50;
 
-        heart.style.animationDuration=
-        (Math.random()*2+3)+"s";
+    let fall = setInterval(()=>{
 
-        container.appendChild(heart);
+        y += 3;
 
+        heart.style.top = y + "px";
 
-        // hilang sendiri kalau jatuh
-        setTimeout(()=>{
+        if(y > window.innerHeight){
+
+            clearInterval(fall);
             heart.remove();
-        },5000);
-
-
-        heart.onclick=function(){
-
-            if(gameEnded)return;
-
-            score++;
-
-            document.getElementById("score").innerHTML=
-            `Collected Hearts : ${score}/${target}`;
-
-            heart.remove();
-
-
-            if(score>=target){
-
-                gameEnded=true;
-
-                document.getElementById("game").hidden=true;
-                document.getElementById("loading").hidden=false;
-
-
-                setTimeout(()=>{
-
-                    document.getElementById("loading").hidden=true;
-                    document.getElementById("letter").hidden=false;
-
-                },3000);
-
-            }
 
         }
 
-    },300);
+    },20);
+
+
+    heart.onclick = ()=>{
+
+        clearInterval(fall);
+
+        score++;
+
+        document.getElementById("score").innerHTML =
+        `Collected Hearts : ${score}/${target}`;
+
+        heart.remove();
+
+
+        if(score >= target){
+
+            clearInterval(rain);
+
+            document.getElementById("game").hidden = true;
+            document.getElementById("loading").hidden = false;
+
+            setTimeout(()=>{
+
+                document.getElementById("loading").hidden = true;
+                document.getElementById("letter").hidden = false;
+
+            },3000);
+
+        }
+
+    }
 
 }
