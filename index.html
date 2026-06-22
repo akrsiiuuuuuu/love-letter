@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Love Letter</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<section id="welcome">
+
+<h1>Hi, Akram! 💖</h1>
+
+<p>Click the button below</p>
+
+<button onclick="start()">
+Start with Love ♥
+</button>
+
+</section>
+
+
+
+<section id="game" hidden>
+
+<h2 id="score">
+Collected Hearts : 0/14
+</h2>
+
+<p>Tap all the hearts!</p>
+
+<div id="hearts"></div>
+
+</section>
+
+
+
+<section id="loading" hidden>
+
+<h2>Sending Love... 💌</h2>
+
+<p>Please wait...</p>
+
+</section>
+
+
+
+<section id="letter" hidden>
+
+<div class="card">
+
+<img src="photo.jpg" width="250">
+
+<br><br>
+
+<button onclick="openLetter()">
+Open Letter 💌
+</button>
+
+</div>
+
+</section>
+
+
+
+<div id="popup">
+
+<div class="paper">
+
+<h2>For You 💗</h2>
+
+<p>
+
+Hai!
+
+Terima kasih sudah membuka surat ini.
+
+Semoga harimu selalu bahagia,
+tetap sehat, dan semua impianmu
+bisa tercapai.
+
+Jangan lupa tersenyum ya. 🌷
+
+</p>
+
+<button onclick="closeLetter()">
+Close
+</button>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
