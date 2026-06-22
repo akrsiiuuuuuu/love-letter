@@ -71,10 +71,8 @@ button:hover{
     z-index: 1000;
 }
 
-.card img{
-    width: 250px;
-    border-radius: 10px;
-}
+
+
 
 #popup{
     display: none;
