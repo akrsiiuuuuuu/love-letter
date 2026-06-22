@@ -1,47 +1,54 @@
 let score = 0;
-let target = 14;
-let rain;
+const target = 14;
+let rain = null;
+let finished = false;
 
 function start() {
+
     document.getElementById("welcome").hidden = true;
     document.getElementById("game").hidden = false;
 
-    rain = setInterval(createHeart, 200);
+    rain = setInterval(createHeart, 250);
+
 }
+
 
 function createHeart() {
 
-    const hearts = document.getElementById("hearts");
+    if (finished) return;
 
-    let heart = document.createElement("div");
+    const container = document.getElementById("hearts");
 
-    heart.classList.add("heart");
+    const heart = document.createElement("div");
+
     heart.innerHTML = "💗";
+    heart.className = "heart";
 
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.top = "-50px";
+    heart.style.left = Math.random() * 95 + "vw";
 
-    hearts.appendChild(heart);
+    container.appendChild(heart);
 
-    let y = -50;
 
-    let fall = setInterval(()=>{
+    let topPos = -50;
 
-        y += 3;
+    const fall = setInterval(() => {
 
-        heart.style.top = y + "px";
+        topPos += 4;
 
-        if(y > window.innerHeight){
+        heart.style.top = topPos + "px";
+
+        if (topPos > window.innerHeight) {
 
             clearInterval(fall);
             heart.remove();
 
         }
 
-    },20);
+    }, 20);
 
 
-    heart.onclick = ()=>{
+
+    heart.onclick = () => {
 
         clearInterval(fall);
 
@@ -53,22 +60,43 @@ function createHeart() {
         heart.remove();
 
 
-        if(score >= target){
+        if (score >= target) {
+
+            finished = true;
 
             clearInterval(rain);
 
             document.getElementById("game").hidden = true;
+
             document.getElementById("loading").hidden = false;
 
-            setTimeout(()=>{
+
+
+            setTimeout(() => {
 
                 document.getElementById("loading").hidden = true;
+
                 document.getElementById("letter").hidden = false;
 
             },3000);
 
         }
 
-    }
+    };
+
+}
+
+
+
+function openLetter(){
+
+    document.getElementById("popup").style.display = "block";
+
+}
+
+
+function closeLetter(){
+
+    document.getElementById("popup").style.display = "none";
 
 }
