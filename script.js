@@ -9,8 +9,8 @@ function start() {
     document.getElementById("game").hidden = false;
 
     rain = setInterval(createHeart, 250);
-}
 
+}
 
 function createHeart() {
 
@@ -27,20 +27,16 @@ function createHeart() {
 
     container.appendChild(heart);
 
-
     let topPos = -50;
 
     const fall = setInterval(() => {
 
         topPos += 4;
-
         heart.style.top = topPos + "px";
 
         if (topPos > window.innerHeight) {
-
             clearInterval(fall);
             heart.remove();
-
         }
 
     }, 20);
@@ -82,10 +78,9 @@ function createHeart() {
 
 function openLetter() {
 
-    document.getElementById("popup").style.display = "block";
+    document.getElementById("popup").style.display = "flex";
 
 }
-
 
 function closeLetter() {
 
