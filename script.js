@@ -1,7 +1,6 @@
 let score = 0;
+let target = 14;
 let gameEnded = false;
-
-const target = 100000;
 
 function start(){
 
@@ -22,48 +21,53 @@ function spawnHearts(){
 
         let heart = document.createElement("div");
 
-        heart.innerHTML = "💗";
-        heart.className = "heart";
+        heart.innerHTML="💗";
+        heart.className="heart";
 
-        heart.style.left = Math.random()*95 + "vw";
-        heart.style.animationDuration =
-        (Math.random()*3+3)+"s";
+        heart.style.left=Math.random()*95+"vw";
+
+        heart.style.animationDuration=
+        (Math.random()*2+3)+"s";
 
         container.appendChild(heart);
 
+
+        // hilang sendiri kalau jatuh
         setTimeout(()=>{
             heart.remove();
-        },6000);
+        },5000);
 
 
-        heart.onclick = function(){
+        heart.onclick=function(){
 
-            if(gameEnded) return;
+            if(gameEnded)return;
 
             score++;
 
-            document.getElementById("score").innerHTML =
+            document.getElementById("score").innerHTML=
             `Collected Hearts : ${score}/${target}`;
 
             heart.remove();
 
-            if(score >= target){
 
-                gameEnded = true;
+            if(score>=target){
 
-                document.getElementById("game").hidden = true;
-                document.getElementById("loading").hidden = false;
+                gameEnded=true;
+
+                document.getElementById("game").hidden=true;
+                document.getElementById("loading").hidden=false;
+
 
                 setTimeout(()=>{
 
-                    document.getElementById("loading").hidden = true;
-                    document.getElementById("letter").hidden = false;
+                    document.getElementById("loading").hidden=true;
+                    document.getElementById("letter").hidden=false;
 
                 },3000);
 
             }
 
-        };
+        }
 
     },300);
 
