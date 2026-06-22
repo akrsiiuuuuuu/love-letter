@@ -1,65 +1,52 @@
-let score = 0;
+function spawnHearts(){
 
-function start() {
+const container=document.getElementById("hearts");
 
-    document.getElementById("welcome").hidden = true;
-    document.getElementById("game").hidden = false;
+for(let i=0;i<14;i++){
 
-    spawnHearts();
-}
+let heart=document.createElement("div");
+
+heart.innerHTML="💗";
+heart.className="heart";
+
+heart.style.left=Math.random()*90+"vw";
+
+heart.style.animationDuration=
+(Math.random()*3+3)+"s";
+
+setTimeout(()=>{
+
+container.appendChild(heart);
+
+},i*500);
 
 
-function spawnHearts() {
+heart.onclick=function(){
 
-    const container = document.getElementById("hearts");
+score++;
 
-    for(let i = 0; i < 14; i++) {
+document.getElementById("score")
+.innerHTML=
+`Collected Hearts : ${score}/14`;
 
-        const heart = document.createElement("div");
+heart.remove();
 
-        heart.innerHTML = "💗";
+if(score===14){
 
-        heart.onclick = function(){
+document.getElementById("game").hidden=true;
+document.getElementById("loading").hidden=false;
 
-            score++;
+setTimeout(()=>{
 
-            document.getElementById("score").innerHTML =
-            `Collected Hearts : ${score}/14`;
+document.getElementById("loading").hidden=true;
+document.getElementById("letter").hidden=false;
 
-            heart.remove();
-
-            if(score === 14){
-
-                document.getElementById("game").hidden = true;
-                document.getElementById("loading").hidden = false;
-
-                setTimeout(() => {
-
-                    document.getElementById("loading").hidden = true;
-                    document.getElementById("letter").hidden = false;
-
-                }, 3000);
-
-            }
-
-        };
-
-        container.appendChild(heart);
-
-    }
+},3000);
 
 }
 
-
-function openLetter(){
-
-    document.getElementById("popup").style.display = "block";
-
 }
 
-
-function closeLetter(){
-
-    document.getElementById("popup").style.display = "none";
+}
 
 }
