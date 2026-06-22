@@ -87,3 +87,15 @@ function closeLetter() {
     document.getElementById("popup").style.display = "none";
 
 }
+function openLetter() {
+    alert("Function works!");
+
+    const popup = document.getElementById("popup");
+
+    if (!popup) {
+        alert("Popup not found");
+        return;
+    }
+
+    popup.style.display = "flex";
+}
