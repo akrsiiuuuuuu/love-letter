@@ -1,69 +1,81 @@
-body{
-    font-family: Arial, sans-serif;
-    background:#ffe4ec;
-    text-align:center;
-    margin:0;
-    padding:0;
+let score = 0;
+
+function start(){
+
+document.getElementById("welcome").hidden = true;
+document.getElementById("game").hidden = false;
+
+spawnHearts();
+
 }
 
-section{
-    padding:50px;
+
+function spawnHearts(){
+
+const container = document.getElementById("hearts");
+
+for(let i=0;i<14;i++){
+
+let heart = document.createElement("div");
+
+heart.innerHTML = "💗";
+heart.className = "heart";
+
+heart.style.left = Math.random()*90+"vw";
+
+heart.style.animationDuration =
+(Math.random()*3+3)+"s";
+
+
+setTimeout(()=>{
+
+container.appendChild(heart);
+
+},i*500);
+
+
+heart.onclick=function(){
+
+score++;
+
+document.getElementById("score").innerHTML =
+`Collected Hearts : ${score}/14`;
+
+heart.remove();
+
+
+if(score===14){
+
+document.getElementById("game").hidden=true;
+document.getElementById("loading").hidden=false;
+
+
+setTimeout(()=>{
+
+document.getElementById("loading").hidden=true;
+document.getElementById("letter").hidden=false;
+
+},3000);
+
 }
 
-h1,h2{
-    color:#ff4f87;
 }
 
-button{
-    background:#ff7aa2;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:25px;
-    font-size:16px;
-    cursor:pointer;
 }
 
-button:hover{
-    background:#ff5f92;
 }
 
-#hearts{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-    margin-top:20px;
+
+
+function openLetter(){
+
+document.getElementById("popup").style.display="block";
+
 }
 
-#hearts div{
-    font-size:35px;
-    cursor:pointer;
-}
 
-.card{
-    background:white;
-    padding:20px;
-    width:300px;
-    margin:auto;
-    border-radius:20px;
-    box-shadow:0 0 15px rgba(255,105,180,0.3);
-}
+function closeLetter(){
 
-#popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-}
+document.getElementById("popup").style.display="none";
 
-.paper{
-    background:white;
-    width:350px;
-    padding:20px;
-    border-radius:20px;
-    margin:100px auto;
 }
