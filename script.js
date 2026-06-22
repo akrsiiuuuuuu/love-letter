@@ -9,7 +9,6 @@ function start() {
     document.getElementById("game").hidden = false;
 
     rain = setInterval(createHeart, 250);
-
 }
 
 function createHeart() {
@@ -24,6 +23,7 @@ function createHeart() {
     heart.className = "heart";
 
     heart.style.left = Math.random() * 95 + "vw";
+    heart.style.top = "-50px";
 
     container.appendChild(heart);
 
@@ -32,14 +32,17 @@ function createHeart() {
     const fall = setInterval(() => {
 
         topPos += 4;
+
         heart.style.top = topPos + "px";
 
         if (topPos > window.innerHeight) {
+
             clearInterval(fall);
             heart.remove();
+
         }
 
-    }, 20);
+    },20);
 
 
     heart.onclick = () => {
@@ -53,7 +56,7 @@ function createHeart() {
 
         heart.remove();
 
-        if (score >= target) {
+        if(score >= target){
 
             finished = true;
 
@@ -62,12 +65,12 @@ function createHeart() {
             document.getElementById("game").hidden = true;
             document.getElementById("loading").hidden = false;
 
-            setTimeout(() => {
+            setTimeout(()=>{
 
                 document.getElementById("loading").hidden = true;
                 document.getElementById("letter").hidden = false;
 
-            }, 3000);
+            },3000);
 
         }
 
@@ -76,26 +79,17 @@ function createHeart() {
 }
 
 
-function openLetter() {
 
-    document.getElementById("popup").style.display = "flex";
+function openLetter(){
 
-}
-
-function closeLetter() {
-
-    document.getElementById("popup").style.display = "none";
+document.getElementById("popup").style.display = "flex";
 
 }
-function openLetter() {
-    alert("Function works!");
 
-    const popup = document.getElementById("popup");
 
-    if (!popup) {
-        alert("Popup not found");
-        return;
-    }
 
-    popup.style.display = "flex";
+function closeLetter(){
+
+document.getElementById("popup").style.display = "none";
+
 }
