@@ -9,7 +9,6 @@ function start() {
     document.getElementById("game").hidden = false;
 
     rain = setInterval(createHeart, 250);
-
 }
 
 
@@ -47,7 +46,6 @@ function createHeart() {
     }, 20);
 
 
-
     heart.onclick = () => {
 
         clearInterval(fall);
@@ -59,7 +57,6 @@ function createHeart() {
 
         heart.remove();
 
-
         if (score >= target) {
 
             finished = true;
@@ -67,18 +64,14 @@ function createHeart() {
             clearInterval(rain);
 
             document.getElementById("game").hidden = true;
-
             document.getElementById("loading").hidden = false;
-
-
 
             setTimeout(() => {
 
                 document.getElementById("loading").hidden = true;
-
                 document.getElementById("letter").hidden = false;
 
-            },3000);
+            }, 3000);
 
         }
 
@@ -87,15 +80,14 @@ function createHeart() {
 }
 
 
-
-function openLetter(){
+function openLetter() {
 
     document.getElementById("popup").style.display = "block";
 
 }
 
 
-function closeLetter(){
+function closeLetter() {
 
     document.getElementById("popup").style.display = "none";
 
