@@ -1,6 +1,8 @@
 let score = 0;
 let gameEnded = false;
 
+const target = 100000;
+
 function start(){
 
     document.getElementById("welcome").hidden = true;
@@ -24,14 +26,11 @@ function spawnHearts(){
         heart.className = "heart";
 
         heart.style.left = Math.random()*95 + "vw";
-
         heart.style.animationDuration =
         (Math.random()*3+3)+"s";
 
         container.appendChild(heart);
 
-
-        // Hapus otomatis jika sudah jatuh
         setTimeout(()=>{
             heart.remove();
         },6000);
@@ -44,19 +43,16 @@ function spawnHearts(){
             score++;
 
             document.getElementById("score").innerHTML =
-            `Collected Hearts : ${score}`;
+            `Collected Hearts : ${score}/${target}`;
 
             heart.remove();
 
-
-            // Ganti 50 sesuka hati
-            if(score >= 50){
+            if(score >= target){
 
                 gameEnded = true;
 
                 document.getElementById("game").hidden = true;
                 document.getElementById("loading").hidden = false;
-
 
                 setTimeout(()=>{
 
@@ -67,22 +63,8 @@ function spawnHearts(){
 
             }
 
-        }
+        };
 
     },300);
-
-}
-
-
-function openLetter(){
-
-    document.getElementById("popup").style.display = "block";
-
-}
-
-
-function closeLetter(){
-
-    document.getElementById("popup").style.display = "none";
 
 }
