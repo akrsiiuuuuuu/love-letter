@@ -1,66 +1,88 @@
 let score = 0;
+let gameEnded = false;
 
-function start() {
+function start(){
+
     document.getElementById("welcome").hidden = true;
     document.getElementById("game").hidden = false;
 
     spawnHearts();
+
 }
 
-function spawnHearts() {
+function spawnHearts(){
 
     const container = document.getElementById("hearts");
 
-    for (let i = 0; i < 14; i++) {
+    setInterval(()=>{
+
+        if(gameEnded) return;
 
         let heart = document.createElement("div");
 
         heart.innerHTML = "💗";
         heart.className = "heart";
 
-        heart.style.left = Math.random() * 90 + "vw";
+        heart.style.left = Math.random()*95 + "vw";
 
         heart.style.animationDuration =
-            (Math.random() * 3 + 3) + "s";
+        (Math.random()*3+3)+"s";
 
-        setTimeout(() => {
-            container.appendChild(heart);
-        }, i * 500);
+        container.appendChild(heart);
 
 
-        heart.onclick = function () {
+        // Hapus otomatis jika sudah jatuh
+        setTimeout(()=>{
+            heart.remove();
+        },6000);
+
+
+        heart.onclick = function(){
+
+            if(gameEnded) return;
 
             score++;
 
             document.getElementById("score").innerHTML =
-                `Collected Hearts : ${score}/14`;
+            `Collected Hearts : ${score}`;
 
             heart.remove();
 
-            if (score === 14) {
+
+            // Ganti 50 sesuka hati
+            if(score >= 50){
+
+                gameEnded = true;
 
                 document.getElementById("game").hidden = true;
                 document.getElementById("loading").hidden = false;
 
-                setTimeout(() => {
+
+                setTimeout(()=>{
 
                     document.getElementById("loading").hidden = true;
                     document.getElementById("letter").hidden = false;
 
-                }, 3000);
+                },3000);
 
             }
 
-        };
+        }
 
-    }
+    },300);
 
 }
 
-function openLetter() {
+
+function openLetter(){
+
     document.getElementById("popup").style.display = "block";
+
 }
 
-function closeLetter() {
+
+function closeLetter(){
+
     document.getElementById("popup").style.display = "none";
+
 }
